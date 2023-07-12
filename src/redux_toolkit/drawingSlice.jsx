@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   dots: [],
   lines: [],
-  currentColor: "",
+  currentColor: "black",
 };
 
 const drawingSlice = createSlice({
