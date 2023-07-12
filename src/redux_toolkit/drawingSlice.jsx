@@ -10,7 +10,7 @@ const drawingSlice = createSlice({
   name: "drawing",
   initialState,
   reducers: {
-    dots: (state, action) => {
+    drawDots: (state, action) => {
       console.log(state);
       console.log(action);
       state.dots = [...state, action.dots];
