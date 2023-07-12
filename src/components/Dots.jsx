@@ -15,7 +15,7 @@ export default function Dots() {
 
     dots.forEach((dot) => {
       ctx.fillStyle = dot.color;
-      ctx.fillRect(dot.x, dot.y, 2, 2);
+      ctx.fillRect(dot.x, dot.y, 4, 4);
     });
   }, [dots]);
 
@@ -25,7 +25,7 @@ export default function Dots() {
     setPosition({ x: offsetX, y: offsetY });
   };
   const draw = (event) => {
-    if (!painting) return;
+    if (painting) return;
     const { offsetX, offsetY } = event.nativeEvent;
     if (offsetX === position.x && offsetY === position.y) {
       return;
@@ -46,9 +46,8 @@ export default function Dots() {
         width="500"
         height="500"
         ref={canvasRef}
-        onMouseDown={startPainting}
-        onMouseUp={stopPainting}
-        onMouseMove={draw}
+        onMouseDown={draw}
+        onMouseMove={stopPainting}
         onMouseLeave={stopPainting}
         style={{ cursor: "crosshair", border: "1px solid black" }}
       ></canvas>
