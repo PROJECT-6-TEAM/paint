@@ -28,5 +28,5 @@ const drawingSlice = createSlice({
   },
 });
 
-export const { dots, lines, currentColor } = drawingSlice.actions;
+export const { drawDots, lines, currentColor } = drawingSlice.actions;
 export default drawingSlice.reducer;
