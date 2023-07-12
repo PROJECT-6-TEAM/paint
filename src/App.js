@@ -1,8 +1,10 @@
+import Home from "components/home";
+
 function App() {
   return (
-    <>
-      hello world
-    </>
+    <div>
+      <Home />
+    </div>
   );
 }
 export default App;
