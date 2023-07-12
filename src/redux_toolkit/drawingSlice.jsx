@@ -18,7 +18,7 @@ const drawingSlice = createSlice({
     lines: (state, action) => {
       console.log(state);
       console.log(action);
-      state.lines = [...state, action.lines];
+      state.lines = [...state.lines, action.payload];
     },
     currentColor: (state, action) => {
       console.log(state);
