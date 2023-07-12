@@ -1,8 +1,8 @@
+import DrawingBoard from "components/DrawingBoard";
+
 function App() {
   return (
-    <>
-      hello world
-    </>
+    <DrawingBoard />
   );
 }
 export default App;
