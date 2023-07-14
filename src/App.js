@@ -1,11 +1,9 @@
-import Dots from "components/Dots";
-import DrawingBoard from "components/DrawingBoard";
+import Home from "pages/Home";
 
 function App() {
   return (
     <>
-      <DrawingBoard />
-      <Dots />
+      <Home />
     </>
   );
 }
