@@ -1,15 +1,14 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { drawDots } from "redux_toolkit/drawingSlice";
 
-export default function Dots() {
+export const useDrawingDots = () => {
   const dispatch = useDispatch();
   const currentColor = useSelector((state) => state.drawing.currentColor);
   const dots = useSelector((state) => state.drawing.dots);
   const [position, setPosition] = useState({});
-  const canvasRef = useRef(null);
 
-  const handleMouseEvents = (event) => {
+  const DotMouseEvents = (event) => {
     const { offsetX, offsetY } = event.nativeEvent;
     const dot = {
       x: offsetX,
@@ -21,32 +20,23 @@ export default function Dots() {
       return;
     }
 
-    setPosition(dot);
-    dispatch(drawDots(dot));
+    if (event.type === "mousedown") {
+      setPosition(dot);
+      dispatch(drawDots(dot));
+    }
   };
 
-  useEffect(() => {
-    const context = canvasRef.current.getContext("2d");
-
+  const dotDraw = (context) => {
     dots.forEach((dot) => {
       // 동그란 점 찍기
-      context.beginPath() ;
-      context.arc(dot.x, dot.y, 2, 0, 2*Math.PI);
+      context.beginPath();
+      context.arc(dot.x, dot.y, 2, 0, 2 * Math.PI);
+      context.strokeStyle = dot.color;
       context.stroke();
       context.fillStyle = dot.color;
       context.fill();
-    })
-  }, [dots]);
+    });
+  };
 
-  return (
-    <div>
-      <canvas
-        ref={canvasRef}
-        width="500"
-        height="500"
-        onMouseDown={handleMouseEvents}
-        className="cursor-crosshair border border-solid border-black"
-      ></canvas>
-    </div>
-  );
-}
+  return { DotMouseEvents, dotDraw };
+};
